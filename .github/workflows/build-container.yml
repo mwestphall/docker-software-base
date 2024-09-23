@@ -20,7 +20,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    if: startsWith(github.repository, 'opensciencegrid/')
+    #if: startsWith(github.repository, 'opensciencegrid/')
     strategy:
       fail-fast: False
       matrix:
@@ -76,7 +76,8 @@ jobs:
       continue-on-error: ${{ matrix.repo == 'development' && matrix.series == '23' }}
       with:
         context: .
-        push: true
+        push: false
+        platforms: 'linux/amd64,linux/arm64'
         build-args: |
           IMAGE_BASE=${{ matrix.base.image }}
           BASE_YUM_REPO=${{ matrix.repo }}
